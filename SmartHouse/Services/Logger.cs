@@ -13,6 +13,7 @@ namespace SmartHouse.Services
         public Logger(string logFilePath)
         {
             this.logFilePath = logFilePath;
+            Directory.CreateDirectory(Path.GetDirectoryName(logFilePath));
         }
 
         public void Log(string message)
