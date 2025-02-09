@@ -9,15 +9,14 @@ namespace SmartHouse.Abstracts
 {
     public abstract class Device : IDevice
     {
-        public string Id { get; private set; }
-        public string Name { get; private set; }
-        public bool isOn { get; private set; }
+        public string id { get; private set; }
+        public string deviceName { get; protected set; }
+        public bool isOn { get; protected set; }
 
-        public virtual bool IsOn { get { return isOn; } }
 
         protected Device(string name) { 
-            Id = Guid.NewGuid().ToString();
-            Name = name;
+            id = Guid.NewGuid().ToString();
+            deviceName = name;
             isOn = false;
         }
 
@@ -31,9 +30,9 @@ namespace SmartHouse.Abstracts
         }
 
         
-        public string GetStatus()
+        public virtual string GetStatus()
         {
-            return $"The device with name: {Name} is turned {(IsOn ? "On" : "Off")}."; 
+            return $"The device with name: {deviceName} is turned {(isOn ? "On" : "Off")}."; 
         }
 
     }

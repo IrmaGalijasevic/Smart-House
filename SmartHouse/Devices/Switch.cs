@@ -3,10 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SmartHouse.Abstracts;
 
 namespace SmartHouse.Devices
 {
-    internal class Switch
+    public class Switch : Device
     {
+        public Switch(string name): base(name)
+        {
+        }
+
+        public void Toggle()
+        {
+            if (isOn)
+            {
+                TurnOff();
+            }
+            else
+            {
+                TurnOn();
+            }
+        }
     }
 }
