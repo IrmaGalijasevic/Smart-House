@@ -9,7 +9,7 @@ namespace SmartHouse
         static void Main(string[] args)
         {
             // Initialize logger
-            string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "Logs", "device_logs.txt");
+            string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "Device-Logs", "device_logs.txt");
             Logger logger = new Logger(logFilePath);
 
 
