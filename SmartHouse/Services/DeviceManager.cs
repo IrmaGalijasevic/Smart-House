@@ -10,10 +10,12 @@ namespace SmartHouse.Services
     public class DeviceManager
     {
         private List<Device> devices;
+        private Logger logger;
 
-        public DeviceManager() 
+        public DeviceManager(Logger logger) 
         {
             devices = new List<Device>();
+            this.logger = logger;
         }
 
         public void AddDevice(Device device)
@@ -23,6 +25,7 @@ namespace SmartHouse.Services
                 throw new ArgumentNullException("Device is not defined");
             }
             devices.Add(device);
+            device.StatusChanged += logger.Log;
         }
 
         public Device FindDevice(string name) 
@@ -41,6 +44,7 @@ namespace SmartHouse.Services
             {
                 throw new ArgumentNullException("Device not found");
             }
+            device.StatusChanged -= logger.Log;
             if (!devices.Remove(device))
             {
                 throw new InvalidOperationException("Device not found");
@@ -68,6 +72,10 @@ namespace SmartHouse.Services
 
         public void ClearDevices()
         {
+            foreach (var device in devices)
+            {
+                device.StatusChanged -= logger.Log;
+            }
             devices.Clear();
         }
 
